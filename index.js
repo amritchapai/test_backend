@@ -91,7 +91,7 @@ io.on("connection", (socket) => {
   // Handle QR scan results
   socket.on("qrScanned", (data) => {
     console.log("📱 QR Code scanned:", data);
-    socket.emit("messageResponse", data);
+    socket.broadcast.emit("response", data);
 
     // You might want to broadcast to other clients or handle the data
     // socket.broadcast.emit("qrResult", data);
