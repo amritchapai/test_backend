@@ -113,7 +113,12 @@ io.on("connection", (socket) => {
   // Example: Send startScan command (you can trigger this manually or via API)
   socket.on("requestScan", () => {
     console.log("🎯 Scan requested by:", socket.id);
-    socket.emit("startScan");
+    socket.broadcast.emit("startScan");
+  });
+
+  socket.on("response", (data) => {
+    console.log("obtained data", data);
+    socket.broadcast.emit("response", data);
   });
 
   // Handle disconnection
